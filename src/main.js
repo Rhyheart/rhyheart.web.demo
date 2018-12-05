@@ -9,7 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
-Vue.prototype.$element = ElementUI
+Vue.prototype.$ele = ElementUI
 
 /* eslint-disable no-new */
 new Vue({
