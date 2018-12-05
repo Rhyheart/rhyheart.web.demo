@@ -92,10 +92,7 @@ export default {
     }
   },
   mounted () {
-    this.$ele.Message({
-      message: '恭喜你，这是一条成功消息！',
-      type: 'success'
-    })
+    this.$ele.Message.success('恭喜你，这是一条成功消息！')
   }
 }
 </script>
