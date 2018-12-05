@@ -90,6 +90,12 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  mounted () {
+    this.$element.Message({
+      message: '恭喜你，这是一条成功消息！',
+      type: 'success'
+    })
   }
 }
 </script>
