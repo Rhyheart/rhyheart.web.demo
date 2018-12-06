@@ -10,15 +10,15 @@
             <el-menu @open="handleOpen" @close="handleClose">
               <el-menu-item index="1">
                 <i class="el-icon-menu"></i>
-                <span slot="title">页面一</span>
+                <span slot="title"><a href="#/first">页面一</a></span>
               </el-menu-item>
               <el-menu-item index="2">
                 <i class="el-icon-setting"></i>
-                <span slot="title">页面二</span>
+                <span slot="title"><a href="#/second">页面二</a></span>
               </el-menu-item>
               <el-menu-item index="3">
                 <i class="el-icon-document"></i>
-                <span slot="title">页面三</span>
+                <span slot="title"><a href="#/third">页面三</a></span>
               </el-menu-item>
             </el-menu>
           </el-col>
