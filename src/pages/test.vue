@@ -23,7 +23,7 @@
       }
     },
     mounted() {
-      this.$ele.Message.success(this.common.message);
+      this.$message.success("加载成功！")
     },
     methods:{
         submit(){

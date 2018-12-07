@@ -51,7 +51,7 @@
       };
     },
     mounted() {
-      //this.$ele.Message.success(this.common.message);
+      this.$message.success(this.common.message);
     },
     methods: {
       handleOpen(key, keyPath) {
