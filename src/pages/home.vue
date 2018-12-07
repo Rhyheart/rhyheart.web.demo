@@ -8,6 +8,10 @@
         <el-row class="tac">
           <el-col :span="24">
             <el-menu @open="handleOpen" @close="handleClose">
+                <el-menu-item index="0">
+                <i class="el-icon-menu"></i>
+                <span slot="title"><a href="#/test">测试</a></span>
+              </el-menu-item>
               <el-menu-item index="1">
                 <i class="el-icon-menu"></i>
                 <span slot="title"><a href="#/first">页面一</a></span>
@@ -47,7 +51,7 @@
       };
     },
     mounted() {
-      this.$ele.Message.success(this.common.message);
+      //this.$ele.Message.success(this.common.message);
     },
     methods: {
       handleOpen(key, keyPath) {

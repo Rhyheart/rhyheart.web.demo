@@ -15,6 +15,11 @@ export default new Router({
       component : resolve => require(['../pages/home'], resolve),
       children:[
         {
+          path:'/test',
+          name:'test',
+          component:resolve=>require(['../pages/test'],resolve)
+        },
+        {
           path:'/first',
           name:'first',
           component : resolve => require(['../pages/first'],resolve)
