@@ -11,29 +11,42 @@
     <el-container>
       <el-aside width="200px">
         <!-- Aside -->
-        <el-menu class="el-menu-vertical" @open="handleOpen" @close="handleClose" @select="handleSelect" :collapse="aside.isOpen">
+        <el-menu
+          class="el-menu-vertical"
+          @open="handleOpen"
+          @close="handleClose"
+          @select="handleSelect"
+          :collapse="aside.isOpen"
+          :default-active="this.$route.path"
+        >
           <template v-for="(item,index) in menus">
-            <el-submenu v-if="item.children" :key="index" :index="index+''">
+            <el-submenu v-if="item.children" :key="index" :index="item.url?item.url:index+''">
               <template slot="title">
                 <i :class="item.icon"></i>
                 <span>{{item.name}}</span>
               </template>
-              <el-menu-item v-for="(item2,index2) in item.children" :key="index2" :index="index+'_'+index2">
+              <el-menu-item
+                v-for="(item2,index2) in item.children"
+                :key="index2"
+                :index="item2.url?item2.url:(index+'-'+index2)+''"
+              >
                 <span>{{item2.name}}</span>
               </el-menu-item>
             </el-submenu>
-            <el-menu-item v-else :key="index" :index="index+''">
+            <el-menu-item v-else :key="index" :index="item.url?item.url:index+''">
               <i :class="item.icon"></i>
               <span slot="title">{{item.name}}</span>
             </el-menu-item>
           </template>
         </el-menu>
       </el-aside>
+
       <el-container>
+        <!-- Main -->
         <el-main>
-          <!-- Main -->
-          <router-view />
+          <router-view/>
         </el-main>
+        <!-- Footer -->
         <el-footer style="height:40px;">Design by rhyheart @ 2019</el-footer>
       </el-container>
     </el-container>
@@ -106,18 +119,8 @@ export default {
       //console.log(key, keyPath);
     },
     handleSelect(index) {
-      let strs = index.split("_");
-      let item = {};
-      if (strs.length >= 1) {
-        item = this.menus[strs[0]];
-      }
-      if (strs.length >= 2) {
-        item = item.children[strs[1]];
-      }
-      this.changePage(item);
-    },
-    changePage(item) {
-      this.$router.push(item.url);
+      //console.log(index);
+      this.$router.push(index);
     },
     loadMenu() {
       this.menus = [
@@ -127,17 +130,17 @@ export default {
           children: [
             {
               name: "页面一",
-              url: "first",
+              url: "/default/first",
               icon: "el-icon-menu"
             },
             {
               name: "页面二",
-              url: "second",
+              url: "/default/second",
               icon: "el-icon-menu"
             },
             {
               name: "页面三",
-              url: "third",
+              url: "/default/third",
               icon: "el-icon-menu"
             }
           ]
@@ -148,17 +151,17 @@ export default {
           children: [
             {
               name: "页面一",
-              url: "first",
+              url: "/test/first",
               icon: "el-icon-menu"
             },
             {
               name: "页面二",
-              url: "second",
+              url: "/test/second",
               icon: "el-icon-menu"
             },
             {
               name: "页面三",
-              url: "third",
+              url: "/test/third",
               icon: "el-icon-menu"
             }
           ]
@@ -169,17 +172,17 @@ export default {
           children: [
             {
               name: "页面一",
-              url: "first",
+              url: "/demo/first",
               icon: "el-icon-menu"
             },
             {
               name: "页面二",
-              url: "second",
+              url: "/demo/second",
               icon: "el-icon-menu"
             },
             {
               name: "页面三",
-              url: "third",
+              url: "/demo/third",
               icon: "el-icon-menu"
             }
           ]

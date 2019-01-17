@@ -7,8 +7,8 @@ export default {
     data(){
         return {
             common : {
-                name:'default-third',
-                message:'welcome to default-third page...'
+                name:'demo-third',
+                message:'welcome to demo-third page...'
             }
         }
     }
