@@ -1,12 +1,21 @@
 <template>
   <el-container>
     <el-header style="height:50px;">
-      <img src="../../assets/logo.png" alt="vue logo">
-      <span>测试项目</span>
-      <span v-on:click="changeCollapse">
-        <i v-if="aside.isOpen" class="el-icon-d-arrow-right"></i>
-        <i v-else class="el-icon-d-arrow-left"></i>
-      </span>
+      <el-row>
+        <el-col :span="16" class="left">
+          <img src="../../assets/logo.png">
+          <span>测试项目</span>
+          <span v-on:click="exchangeAside">
+            <i v-if="aside.isOpen" class="el-icon-d-arrow-left"></i>
+            <i v-else class="el-icon-d-arrow-right"></i>
+          </span>
+        </el-col>
+        <el-col :span="8" class="right">
+          <router-link to="/logout">
+            <i class="fa fa-sign-out"></i>
+          </router-link>
+        </el-col>
+      </el-row>
     </el-header>
     <el-container>
       <el-aside width="200px">
@@ -16,7 +25,7 @@
           @open="handleOpen"
           @close="handleClose"
           @select="handleSelect"
-          :collapse="aside.isOpen"
+          :collapse="!aside.isOpen"
           :default-active="this.$route.path"
         >
           <template v-for="(item,index) in menus">
@@ -58,7 +67,7 @@ export default {
   data() {
     return {
       aside: {
-        isOpen: false
+        isOpen: true
       },
       page: {
         screenWidth: document.body.clientWidth,
@@ -77,12 +86,11 @@ export default {
   },
   methods: {
     adaptive() {
-      if (this.page.screenWidth <= 399) {
-        this.aside.isOpen = false;
+      if (this.page.screenWidth > 500) {
+        this.openAside();
       } else {
-        this.aside.isOpen = true;
+        this.closeAside();
       }
-      this.changeCollapse();
     },
     initEvent() {
       var This = this;
@@ -90,26 +98,30 @@ export default {
         return (() => {
           This.page.screenWidth = document.body.clientWidth;
           This.page.screenHeight = document.body.clientHeight;
-          console.log("width：" + this.page.screenWidth);
-          console.log("height：" + this.page.screenHeight);
           This.adaptive();
         })();
       };
       This.adaptive();
     },
-    changeCollapse() {
+    openAside() {
+      this.aside.isOpen = true;
+      document.getElementsByClassName("el-main")[0].style.margin =
+        "50px 0 0 200px";
+      document.getElementsByClassName("el-footer")[0].style.margin =
+        "0 0 0 200px";
+    },
+    closeAside() {
+      this.aside.isOpen = false;
+      document.getElementsByClassName("el-main")[0].style.margin =
+        "50px 0 0 64px";
+      document.getElementsByClassName("el-footer")[0].style.margin =
+        "0 0 0 64px";
+    },
+    exchangeAside() {
       if (this.aside.isOpen) {
-        this.aside.isOpen = false;
-        document.getElementsByClassName("el-main")[0].style.margin =
-          "50px 0 0 200px";
-        document.getElementsByClassName("el-footer")[0].style.margin =
-          "0 0 0 200px";
+        this.closeAside();
       } else {
-        this.aside.isOpen = true;
-        document.getElementsByClassName("el-main")[0].style.margin =
-          "50px 0 0 64px";
-        document.getElementsByClassName("el-footer")[0].style.margin =
-          "0 0 0 64px";
+        this.openAside();
       }
     },
     handleOpen(key, keyPath) {
@@ -210,16 +222,20 @@ body {
   text-align: left;
 }
 
-.el-header span {
+.el-header .left span {
   font-size: 20px;
   padding-left: 15px;
   vertical-align: middle;
 }
 
-.el-header img {
+.el-header .left img {
   vertical-align: middle;
   width: 30px;
   height: 30px;
+}
+
+.el-header .right {
+  text-align: right;
 }
 
 .el-footer {

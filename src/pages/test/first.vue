@@ -1,16 +1,18 @@
 <template>
-    <div>{{common.message}}</div>
+  <div>
+    <p>{{common.message}}</p>
+  </div>
 </template>
 
 <script>
 export default {
-    data(){
-        return {
-            common : {
-                name:'test-first',
-                message:'welcome to test-first page...'
-            }
-        }
-    }
-}
+  data() {
+    return {
+      common: {
+        name: "test-first",
+        message: "welcome to test-first page..."
+      }
+    };
+  }
+};
 </script>
