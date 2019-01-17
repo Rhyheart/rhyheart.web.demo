@@ -4,31 +4,21 @@
       <img src="../../assets/logo.png" alt="vue logo">
       <span>测试项目</span>
       <span v-on:click="changeCollapse">
-        <i v-if="ui.isCollapse" class="el-icon-d-arrow-right"></i>
+        <i v-if="aside.isOpen" class="el-icon-d-arrow-right"></i>
         <i v-else class="el-icon-d-arrow-left"></i>
       </span>
     </el-header>
     <el-container>
       <el-aside width="200px">
         <!-- Aside -->
-        <el-menu
-          class="el-menu-vertical"
-          @open="handleOpen"
-          @close="handleClose"
-          @select="handleSelect"
-          :collapse="ui.isCollapse"
-        >
+        <el-menu class="el-menu-vertical" @open="handleOpen" @close="handleClose" @select="handleSelect" :collapse="aside.isOpen">
           <template v-for="(item,index) in menus">
             <el-submenu v-if="item.children" :key="index" :index="index+''">
               <template slot="title">
                 <i :class="item.icon"></i>
                 <span>{{item.name}}</span>
               </template>
-              <el-menu-item
-                v-for="(item2,index2) in item.children"
-                :key="index2"
-                :index="index+'_'+index2"
-              >
+              <el-menu-item v-for="(item2,index2) in item.children" :key="index2" :index="index+'_'+index2">
                 <span>{{item2.name}}</span>
               </el-menu-item>
             </el-submenu>
@@ -42,7 +32,7 @@
       <el-container>
         <el-main>
           <!-- Main -->
-          <router-view/>
+          <router-view />
         </el-main>
         <el-footer style="height:40px;">Design by rhyheart @ 2019</el-footer>
       </el-container>
@@ -54,8 +44,12 @@
 export default {
   data() {
     return {
-      ui: {
-        isCollapse: false
+      aside: {
+        isOpen: false
+      },
+      page: {
+        screenWidth: document.body.clientWidth,
+        screenHeight: document.body.clientHeight
       },
       menus: [],
       common: {
@@ -65,83 +59,40 @@ export default {
     };
   },
   mounted() {
-    this.menus = [
-      {
-        name: "默认分组",
-        icon: "el-icon-location",
-        children: [
-          {
-            name: "页面一",
-            url: "first",
-            icon: "el-icon-menu"
-          },
-          {
-            name: "页面二",
-            url: "second",
-            icon: "el-icon-menu"
-          },
-          {
-            name: "页面三",
-            url: "third",
-            icon: "el-icon-menu"
-          }
-        ]
-      },
-      {
-        name: "测试分组",
-        icon: "el-icon-edit-outline",
-        children: [
-          {
-            name: "页面一",
-            url: "first",
-            icon: "el-icon-menu"
-          },
-          {
-            name: "页面二",
-            url: "second",
-            icon: "el-icon-menu"
-          },
-          {
-            name: "页面三",
-            url: "third",
-            icon: "el-icon-menu"
-          }
-        ]
-      },
-      {
-        name: "示例分组",
-        icon: "el-icon-star-on",
-        children: [
-          {
-            name: "页面一",
-            url: "first",
-            icon: "el-icon-menu"
-          },
-          {
-            name: "页面二",
-            url: "second",
-            icon: "el-icon-menu"
-          },
-          {
-            name: "页面三",
-            url: "third",
-            icon: "el-icon-menu"
-          }
-        ]
-      }
-    ];
-    //this.$message.success(this.common.message);
+    this.initEvent();
+    this.loadMenu();
   },
   methods: {
+    adaptive() {
+      if (this.page.screenWidth <= 399) {
+        this.aside.isOpen = false;
+      } else {
+        this.aside.isOpen = true;
+      }
+      this.changeCollapse();
+    },
+    initEvent() {
+      var This = this;
+      window.onresize = () => {
+        return (() => {
+          This.page.screenWidth = document.body.clientWidth;
+          This.page.screenHeight = document.body.clientHeight;
+          console.log("width：" + this.page.screenWidth);
+          console.log("height：" + this.page.screenHeight);
+          This.adaptive();
+        })();
+      };
+      This.adaptive();
+    },
     changeCollapse() {
-      if (this.ui.isCollapse) {
-        this.ui.isCollapse = false;
+      if (this.aside.isOpen) {
+        this.aside.isOpen = false;
         document.getElementsByClassName("el-main")[0].style.margin =
           "50px 0 0 200px";
         document.getElementsByClassName("el-footer")[0].style.margin =
           "0 0 0 200px";
       } else {
-        this.ui.isCollapse = true;
+        this.aside.isOpen = true;
         document.getElementsByClassName("el-main")[0].style.margin =
           "50px 0 0 64px";
         document.getElementsByClassName("el-footer")[0].style.margin =
@@ -167,6 +118,73 @@ export default {
     },
     changePage(item) {
       this.$router.push(item.url);
+    },
+    loadMenu() {
+      this.menus = [
+        {
+          name: "默认分组",
+          icon: "el-icon-location",
+          children: [
+            {
+              name: "页面一",
+              url: "first",
+              icon: "el-icon-menu"
+            },
+            {
+              name: "页面二",
+              url: "second",
+              icon: "el-icon-menu"
+            },
+            {
+              name: "页面三",
+              url: "third",
+              icon: "el-icon-menu"
+            }
+          ]
+        },
+        {
+          name: "测试分组",
+          icon: "el-icon-edit-outline",
+          children: [
+            {
+              name: "页面一",
+              url: "first",
+              icon: "el-icon-menu"
+            },
+            {
+              name: "页面二",
+              url: "second",
+              icon: "el-icon-menu"
+            },
+            {
+              name: "页面三",
+              url: "third",
+              icon: "el-icon-menu"
+            }
+          ]
+        },
+        {
+          name: "示例分组",
+          icon: "el-icon-star-on",
+          children: [
+            {
+              name: "页面一",
+              url: "first",
+              icon: "el-icon-menu"
+            },
+            {
+              name: "页面二",
+              url: "second",
+              icon: "el-icon-menu"
+            },
+            {
+              name: "页面三",
+              url: "third",
+              icon: "el-icon-menu"
+            }
+          ]
+        }
+      ];
     }
   }
 };
