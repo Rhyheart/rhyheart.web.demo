@@ -5,8 +5,8 @@
         <el-col :span="16" class="left">
           <img src="../../assets/logo.png">
           <span>测试项目</span>
-          <span v-on:click="exchangeAside">
-            <i v-if="aside.isOpen" class="el-icon-d-arrow-left"></i>
+          <span v-on:click="asideExchange">
+            <i v-if="page.isAsideOpen" class="el-icon-d-arrow-left"></i>
             <i v-else class="el-icon-d-arrow-right"></i>
           </span>
         </el-col>
@@ -22,10 +22,10 @@
         <!-- Aside -->
         <el-menu
           class="el-menu-vertical"
-          @open="handleOpen"
-          @close="handleClose"
-          @select="handleSelect"
-          :collapse="!aside.isOpen"
+          @open="handleMenuOpen"
+          @close="handleMenuClose"
+          @select="handleMenuSelect"
+          :collapse="!page.isAsideOpen"
           :default-active="this.$route.path"
         >
           <template v-for="(item,index) in menus">
@@ -49,14 +49,16 @@
           </template>
         </el-menu>
       </el-aside>
-
       <el-container>
         <!-- Main -->
-        <el-main>
+        <el-main :class="page.isAsideOpen?'open':'close'">
           <router-view/>
         </el-main>
         <!-- Footer -->
-        <el-footer style="height:40px;">Design by rhyheart @ 2019</el-footer>
+        <el-footer
+          style="height:40px;"
+          :class="page.isAsideOpen?'open':'close'"
+        >Design by rhyheart @ 2019</el-footer>
       </el-container>
     </el-container>
   </el-container>
@@ -66,10 +68,8 @@
 export default {
   data() {
     return {
-      aside: {
-        isOpen: true
-      },
       page: {
+        isAsideOpen: true,
         screenWidth: document.body.clientWidth,
         screenHeight: document.body.clientHeight
       },
@@ -82,59 +82,41 @@ export default {
   },
   mounted() {
     this.initEvent();
-    this.loadMenu();
+    this.initMenu();
   },
   methods: {
-    adaptive() {
-      if (this.page.screenWidth > 500) {
-        this.openAside();
-      } else {
-        this.closeAside();
-      }
-    },
     initEvent() {
       var This = this;
       window.onresize = () => {
         return (() => {
           This.page.screenWidth = document.body.clientWidth;
           This.page.screenHeight = document.body.clientHeight;
-          This.adaptive();
+          This.asideAdapting();
         })();
       };
-      This.adaptive();
+      This.asideAdapting();
     },
-    openAside() {
-      this.aside.isOpen = true;
-      document.getElementsByClassName("el-main")[0].style.margin =
-        "50px 0 0 200px";
-      document.getElementsByClassName("el-footer")[0].style.margin =
-        "0 0 0 200px";
-    },
-    closeAside() {
-      this.aside.isOpen = false;
-      document.getElementsByClassName("el-main")[0].style.margin =
-        "50px 0 0 64px";
-      document.getElementsByClassName("el-footer")[0].style.margin =
-        "0 0 0 64px";
-    },
-    exchangeAside() {
-      if (this.aside.isOpen) {
-        this.closeAside();
+    asideAdapting() {
+      if (this.page.screenWidth > 500) {
+        this.page.isAsideOpen = true;
       } else {
-        this.openAside();
+        this.page.isAsideOpen = false;
       }
     },
-    handleOpen(key, keyPath) {
+    asideExchange() {
+      this.page.isAsideOpen = !this.page.isAsideOpen;
+    },
+    handleMenuOpen(key, keyPath) {
       //console.log(key, keyPath);
     },
-    handleClose(key, keyPath) {
+    handleMenuClose(key, keyPath) {
       //console.log(key, keyPath);
     },
-    handleSelect(index) {
+    handleMenuSelect(index) {
       //console.log(index);
       this.$router.push(index);
     },
-    loadMenu() {
+    initMenu() {
       this.menus = [
         {
           name: "默认分组",
@@ -238,15 +220,6 @@ body {
   text-align: right;
 }
 
-.el-footer {
-  padding-top: 10px;
-  margin: 0 0 0 200px;
-  text-align: center;
-  transition-delay: 50ms;
-  transition-duration: 300ms;
-  background-color: #e9eef3;
-}
-
 .el-aside {
   position: fixed;
   top: 50px;
@@ -266,6 +239,31 @@ body {
   color: #333;
   transition-delay: 50ms;
   transition-duration: 300ms;
+}
+
+.el-main.open {
+  margin: 50px 0 0 200px;
+}
+
+.el-main.close {
+  margin: 50px 0 0 64px;
+}
+
+.el-footer {
+  padding-top: 10px;
+  margin: 0 0 0 200px;
+  text-align: center;
+  transition-delay: 50ms;
+  transition-duration: 300ms;
+  background-color: #e9eef3;
+}
+
+.el-footer.open {
+  margin: 0 0 0 200px;
+}
+
+.el-footer.close {
+  margin: 0 0 0 64px;
 }
 
 body > .el-container {
