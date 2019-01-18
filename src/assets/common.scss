@@ -126,8 +126,8 @@ body > .el-container {
   
   .error-container {
     width: calc(80%);
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: calc(2%);
+    padding-left: calc(2%);
     margin-right: auto;
     margin-left: auto;
   }
@@ -163,8 +163,8 @@ body > .el-container {
   
   .error-button {
     border: 1px solid rgba(255, 255, 255, 0.3);
-    margin-top: 100px;
-    margin-bottom: 30px;
+    margin-top: calc(5vh);
+    margin-bottom: calc(15vh);
     display: inline-block;
   }
   
@@ -194,7 +194,7 @@ body > .el-container {
 
 .box-card.login {
   margin-top: calc(15vh);
-  max-width: 600px;
+  max-width: 500px;
   margin-left: calc(25%);
   margin-right: calc(25%);
 }
