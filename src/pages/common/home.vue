@@ -20,25 +20,14 @@
     <el-container>
       <el-aside width="200px">
         <!-- Aside -->
-        <el-menu
-          class="el-menu-vertical"
-          @open="handleMenuOpen"
-          @close="handleMenuClose"
-          @select="handleMenuSelect"
-          :collapse="!page.isAsideOpen"
-          :default-active="this.$route.path"
-        >
+        <el-menu class="el-menu-vertical" @open="handleMenuOpen" @close="handleMenuClose" @select="handleMenuSelect" :collapse="!page.isAsideOpen" :default-active="this.$route.path">
           <template v-for="(item,index) in menus">
             <el-submenu v-if="item.children" :key="index" :index="item.url?item.url:index+''">
               <template slot="title">
                 <i :class="item.icon"></i>
                 <span>{{item.name}}</span>
               </template>
-              <el-menu-item
-                v-for="(item2,index2) in item.children"
-                :key="index2"
-                :index="item2.url?item2.url:(index+'-'+index2)+''"
-              >
+              <el-menu-item v-for="(item2,index2) in item.children" :key="index2" :index="item2.url?item2.url:(index+'-'+index2)+''">
                 <span>{{item2.name}}</span>
               </el-menu-item>
             </el-submenu>
@@ -52,13 +41,10 @@
       <el-container>
         <!-- Main -->
         <el-main :class="page.isAsideOpen?'open':'close'">
-          <router-view/>
+          <router-view />
         </el-main>
         <!-- Footer -->
-        <el-footer
-          style="height:40px;"
-          :class="page.isAsideOpen?'open':'close'"
-        >Design by rhyheart @ 2019</el-footer>
+        <el-footer style="height:40px;" :class="page.isAsideOpen?'open':'close'">Design by rhyheart @ 2019</el-footer>
       </el-container>
     </el-container>
   </el-container>
@@ -118,6 +104,11 @@ export default {
     },
     initMenu() {
       this.menus = [
+        {
+          name: "首页",
+          icon: "fa fa-home",
+          url: "/welcome"
+        },
         {
           name: "默认分组",
           icon: "el-icon-location",
@@ -229,6 +220,10 @@ body {
   line-height: 200px;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.el-aside .fa-home + span {
+  padding-left: 15px;
 }
 
 .el-main {
