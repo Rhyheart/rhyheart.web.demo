@@ -1,0 +1,204 @@
+
+/* App */
+
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+}
+
+body {
+  margin: 0;
+}
+
+.common-body {
+  height: calc(100vh);
+  width: calc(100%);
+  background: #eee;
+}
+
+/* Home */
+
+.el-header {
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  background-color: white;
+  color: #333;
+  line-height: 50px;
+  text-align: left;
+}
+
+.el-header .left span {
+  font-size: 20px;
+  padding-left: 15px;
+  vertical-align: middle;
+}
+
+.el-header .left img {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+}
+
+.el-header .right {
+  text-align: right;
+}
+
+.el-aside {
+  position: fixed;
+  top: 50px;
+  bottom: 0;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.el-aside .fa-home + span {
+  padding-left: 15px;
+}
+
+.el-main {
+  min-height: calc(100vh - 95px);
+  padding: 5px;
+  margin: 50px 0 0 200px;
+  background-color: #e9eef3;
+  color: #333;
+  transition-delay: 50ms;
+  transition-duration: 300ms;
+}
+
+.el-main.open {
+  margin: 50px 0 0 200px;
+}
+
+.el-main.close {
+  margin: 50px 0 0 64px;
+}
+
+.el-footer {
+  padding-top: 10px;
+  margin: 0 0 0 200px;
+  text-align: center;
+  transition-delay: 50ms;
+  transition-duration: 300ms;
+  background-color: #e9eef3;
+}
+
+.el-footer.open {
+  margin: 0 0 0 200px;
+}
+
+.el-footer.close {
+  margin: 0 0 0 64px;
+}
+
+body > .el-container {
+  margin-bottom: 40px;
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+  line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+  line-height: 320px;
+}
+
+.el-menu-vertical:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
+
+
+/* Error */
+
+  .error-header {
+    background: #fff;
+    height: calc(30vh);
+  }
+  
+  .error-container {
+    width: calc(80%);
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .error-detail {
+    background: rgba(0, 0, 0, 0.05);
+    text-align: center;
+  }
+  
+  .error-name {
+    font-size: 110px;
+    font-weight: 300;
+    margin: -103px 0 0 0;
+    text-align: center;
+  }
+  
+  .error-divider {
+    margin-top: -27px;
+    padding: 30px 0;
+  }
+  
+  .error-title {
+    font-size: 30px;
+    font-weight: 400;
+  }
+
+  .error-message {
+    color: #e5e5e5;
+    font-size: 40px;
+    margin: 0;
+    font-weight: 300;
+  }
+  
+  .error-button {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-top: 100px;
+    margin-bottom: 30px;
+    display: inline-block;
+  }
+  
+  .common-body.error-404{
+    background: #2dc3e8;
+    color: #fff;
+  }
+
+.error-name.error-404{
+    color: #2dc3e8;
+}
+
+  .common-body.error-500{
+    background: #fb6e52;
+    color: #fff;
+  }
+
+.error-name.error-500{
+    color: #fb6e52;
+}
+
+/* Login */
+
+.common-body.login{
+  background: #eee;
+}
+
+.box-card.login {
+  margin-top: calc(15vh);
+  max-width: 600px;
+  margin-left: calc(25%);
+  margin-right: calc(25%);
+}
+
+.login-footer{
+  text-align:right;
+}

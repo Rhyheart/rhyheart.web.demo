@@ -1,34 +1,28 @@
 <template>
-  <div>
+  <div class="common-body login">
     <el-row>
-      <el-col :span="4">
-        &nbsp;
-      </el-col>
-      <el-col :span="16">
-        <el-card class="box-card login">
-          <div slot="header" class="clearfix">
-            <span>用户登录</span>
-          </div>
-          <el-form :model="editor" :rules="editorRule" ref="editor" label-width="100px">
-            <el-form-item label="用户名" prop="userName">
-              <el-input v-model="editor.userName"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" prop="password">
-              <el-input type="password" v-model="editor.password"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="submit('editor')">登录</el-button>
-              <el-button @click="reset('editor')">重置</el-button>
-            </el-form-item>
-          </el-form>
-          <div style="text-align:right;">
-            <router-link to="/register">前往注册<i class="el-icon-arrow-right"></i></router-link>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="4">
-        &nbsp;
-      </el-col>
+      <el-card class="box-card login">
+        <div slot="header" class="clearfix">
+          <span>用户登录</span>
+        </div>
+        <el-form :model="editor" :rules="editorRule" ref="editor" label-width="100px">
+          <el-form-item label="用户名" prop="userName">
+            <el-input v-model="editor.userName"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+            <el-input type="password" v-model="editor.password"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submit('editor')">登录</el-button>
+            <el-button @click="reset('editor')">重置</el-button>
+          </el-form-item>
+        </el-form>
+        <div class="login-footer">
+          <router-link to="/register">前往注册
+            <i class="el-icon-arrow-right"></i>
+          </router-link>
+        </div>
+      </el-card>
     </el-row>
   </div>
 </template>
@@ -73,9 +67,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.box-card.login {
-  margin-top: calc(20vh);
-}
-</style>
