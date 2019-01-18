@@ -1,7 +1,7 @@
 <template>
   <div class="common-body login">
     <el-row>
-      <el-card class="box-card login">
+      <el-card class="box-card login" shadow="hover">
         <div slot="header" class="clearfix">
           <span>用户注册</span>
         </div>
