@@ -143,7 +143,8 @@ export default {
       this.$notify({
         title: "成功",
         message: "登录成功",
-        type: "success"
+        type: "success",
+        position: "bottom-right"
       });
       this.$router.push("login");
     }

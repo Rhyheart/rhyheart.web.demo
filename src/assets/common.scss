@@ -189,14 +189,18 @@ body > .el-container {
 /* Login */
 
 .common-body.login{
-  background: #eee;
+  background: url('./img/login.png');
+  background-repeat:no-repeat;
+  background-size: 90% 100%;
+  background-position: center;
 }
 
 .box-card.login {
   margin-top: calc(15vh);
-  max-width: 500px;
-  margin-left: calc(25%);
-  margin-right: calc(25%);
+  width: calc(40%);
+  margin-left: calc(30%);
+  margin-right: calc(30%);
+  background: rgb(255,255,255,0.8)
 }
 
 .login-footer{

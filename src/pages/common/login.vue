@@ -18,7 +18,8 @@
           </el-form-item>
         </el-form>
         <div class="login-footer">
-          <router-link to="/register">前往注册
+          <router-link to="/register">
+            前往注册
             <i class="el-icon-arrow-right"></i>
           </router-link>
         </div>
@@ -60,7 +61,8 @@ export default {
       this.$notify({
         title: "成功",
         message: "登录成功",
-        type: "success"
+        type: "success",
+        position: "bottom-right"
       });
       this.$router.push("home");
     }
