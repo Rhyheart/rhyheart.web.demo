@@ -83,11 +83,6 @@ var router = new Router({
       component: resolve => require(['../pages/common/register'], resolve)
     },
     {
-      path: '/logout',
-      name: 'logout',
-      component: resolve => require(['../pages/common/logout'], resolve)
-    },
-    {
       path: '/404',
       name: '404',
       component: resolve => require(['../pages/common/404'], resolve)

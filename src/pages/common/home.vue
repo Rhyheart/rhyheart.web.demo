@@ -11,9 +11,7 @@
           </span>
         </el-col>
         <el-col :span="8" class="right">
-          <router-link to="/logout">
-            <i class="fa fa-sign-out"></i>
-          </router-link>
+          <span v-on:click="logout"><i class="fa fa-sign-out"></i></span>
         </el-col>
       </el-row>
     </el-header>
@@ -71,6 +69,9 @@ export default {
     this.initMenu();
   },
   methods: {
+    logout() {
+      this.$router.push("/login");
+    },
     initEvent() {
       var This = this;
       window.onresize = () => {

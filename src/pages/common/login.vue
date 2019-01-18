@@ -1,13 +1,4 @@
 <template>
-  <!-- <div>
-    <p>
-      <router-link to="/register">Go to Register</router-link>
-    </p>
-    <p style="color:green;">{{common.message}}</p>
-    <p>
-      <button v-on:click="login">登录</button>
-    </p>
-  </div> -->
   <div>
     <el-row>
       <el-col :span="4">
@@ -23,13 +14,16 @@
               <el-input v-model="editor.userName"></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="password">
-              <el-input v-model="editor.password"></el-input>
+              <el-input type="password" v-model="editor.password"></el-input>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="submit('editor')">登录</el-button>
               <el-button @click="reset('editor')">重置</el-button>
             </el-form-item>
           </el-form>
+          <div style="text-align:right;">
+            <router-link to="/register">前往注册<i class="el-icon-arrow-right"></i></router-link>
+          </div>
         </el-card>
       </el-col>
       <el-col :span="4">
@@ -49,13 +43,9 @@ export default {
       },
       editorRule: {
         userName: [
-          { required: true, message: "请输入用户名", trigger: "blur" },
-          { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" }
+          { required: true, message: "请输入用户名", trigger: "blur" }
         ],
-        password: [
-          { required: true, message: "请输入密码", trigger: "blur" },
-          { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" }
-        ]
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }]
       }
     };
   },
@@ -63,15 +53,22 @@ export default {
     submit(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("submit!");
+          this.login();
         } else {
-          console.log("error submit!!");
           return false;
         }
       });
     },
     reset(formName) {
       this.$refs[formName].resetFields();
+    },
+    login() {
+      this.$notify({
+        title: "成功",
+        message: "登录成功",
+        type: "success"
+      });
+      this.$router.push("home");
     }
   }
 };
