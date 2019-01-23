@@ -64,7 +64,7 @@ body {
 }
 
 .el-main {
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 40px);
   padding: 60px 10px 10px 10px;
   margin: 0 0 0 200px;
   background-color: #e9eef3;
@@ -214,5 +214,5 @@ body>.el-container {
   background: url('./img/welcome.png');
   background-repeat: no-repeat;
   background-size:100% 99.9%;
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 110px);
 }
