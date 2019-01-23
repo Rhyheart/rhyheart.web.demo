@@ -29,43 +29,50 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      editor: {
-        userName: "",
-        password: ""
-      },
-      editorRule: {
-        userName: [
-          { required: true, message: "请输入用户名", trigger: "blur" }
-        ],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }]
-      }
-    };
-  },
-  methods: {
-    submit(formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          this.login();
-        } else {
-          return false;
+  export default {
+    data() {
+      return {
+        editor: {
+          userName: "",
+          password: ""
+        },
+        editorRule: {
+          userName: [{
+            required: true,
+            message: "请输入用户名",
+            trigger: "blur"
+          }],
+          password: [{
+            required: true,
+            message: "请输入密码",
+            trigger: "blur"
+          }]
         }
-      });
+      };
     },
-    reset(formName) {
-      this.$refs[formName].resetFields();
-    },
-    login() {
-      this.$notify({
-        title: "成功",
-        message: "登录成功",
-        type: "success",
-        position: "bottom-right"
-      });
-      this.$router.push("home");
+    methods: {
+      submit(formName) {
+        this.$refs[formName].validate(valid => {
+          if (valid) {
+            this.login();
+          } else {
+            return false;
+          }
+        });
+      },
+      reset(formName) {
+        this.$refs[formName].resetFields();
+      },
+      login() {
+        this.$notify({
+          title: "成功",
+          message: "登录成功",
+          type: "success",
+          position: "bottom-right"
+        });
+        this.$router.push("home");
+      }
     }
-  }
-};
+  };
+
 </script>

@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <p>{{common.message}}</p>
+  <div class="common-body welcome">
   </div>
 </template>
 
@@ -10,7 +9,7 @@ export default {
     return {
       common: {
         name: "welcome",
-        message: "welcome to home page..."
+        message: ""
       }
     };
   }
