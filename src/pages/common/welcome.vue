@@ -1,5 +1,5 @@
 <template>
-  <div class="common-body welcome">
+  <div class="com-body welcome">
   </div>
 </template>
 

@@ -42,7 +42,7 @@
           <router-view />
         </el-main>
         <!-- Footer -->
-        <el-footer style="height:40px;" :class="page.isAsideOpen?'open':'close'">Design by rhyheart @ 2019</el-footer>
+        <!-- <el-footer style="height:40px;" :class="page.isAsideOpen?'open':'close'">Design by rhyheart @ 2019</el-footer> -->
       </el-container>
     </el-container>
   </el-container>

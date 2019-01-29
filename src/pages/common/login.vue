@@ -1,5 +1,5 @@
 <template>
-  <div class="common-body login">
+  <div class="com-body login">
     <el-row>
       <el-card class="box-card login" shadow="hover">
         <div slot="header" class="clearfix">

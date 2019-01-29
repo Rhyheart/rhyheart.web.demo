@@ -1,5 +1,5 @@
 <template>
-  <div class="common-body error-500">
+  <div class="com-body error-500">
     <div class="error-header"></div>
     <div class="error-container">
       <div class="error-detail">
