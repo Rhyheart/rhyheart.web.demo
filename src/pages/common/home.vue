@@ -3,7 +3,7 @@
     <el-header style="height:50px;">
       <el-row>
         <el-col :span="16" class="left">
-          <img src="../../assets/logo.png">
+          <img src="../../assets/img/logo.png">
           <span>测试项目</span>
           <span v-on:click="asideExchange">
             <i v-if="page.isAsideOpen" class="el-icon-d-arrow-left"></i>
