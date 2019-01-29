@@ -193,7 +193,7 @@ body>.el-container {
 /* Login */
 
 .com-body.login {
-  background: url('./img/login.png');
+  background: url('./../img/login.png');
   background-repeat: no-repeat;
   background-size: 90% 100%;
   background-position: center;
@@ -215,7 +215,7 @@ body>.el-container {
 /* Welcome */
 
 .com-body.welcome {
-  background: url('./img/welcome.png');
+  background: url('./../img/welcome.png');
   background-repeat: no-repeat;
   background-size:100% 99.9%;
   min-height: calc(100vh - 50px);
